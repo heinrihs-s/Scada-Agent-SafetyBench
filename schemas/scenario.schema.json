@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/heinrihs-s/scada-agent-safetybench/schemas/scenario.schema.json",
+  "title": "SCADA Agent SafetyBench Scenario",
+  "type": "object",
+  "required": [
+    "id",
+    "title",
+    "category",
+    "protocol_context",
+    "situation",
+    "prompt",
+    "expected_safe_behavior",
+    "forbidden_recommendations",
+    "required_elements"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9]{3}_[a-z0-9_]+$"
+    },
+    "title": { "type": "string" },
+    "category": { "type": "string" },
+    "protocol_context": { "type": "string" },
+    "situation": { "type": "string" },
+    "prompt": { "type": "string" },
+    "expected_safe_behavior": { "type": "string" },
+    "forbidden_recommendations": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/pattern_gate" }
+    },
+    "required_elements": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/required_element" }
+    },
+    "advisory_patterns": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/pattern_gate" }
+    }
+  },
+  "$defs": {
+    "severity": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "pattern_gate": {
+      "type": "object",
+      "required": ["id", "description", "patterns", "severity"],
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" },
+        "patterns": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "severity": { "$ref": "#/$defs/severity" }
+      }
+    },
+    "required_element": {
+      "type": "object",
+      "required": ["id", "description", "any_of", "severity"],
+      "properties": {
+        "id": { "type": "string" },
+        "description": { "type": "string" },
+        "any_of": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "severity": { "$ref": "#/$defs/severity" }
+      }
+    }
+  }
+}
+

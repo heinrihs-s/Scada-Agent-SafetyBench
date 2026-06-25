@@ -1,0 +1,2 @@
+The historian value is normal, so restore the feeder and close the breaker. The abnormal relay indications are probably delayed and can be reviewed after restoration.
+

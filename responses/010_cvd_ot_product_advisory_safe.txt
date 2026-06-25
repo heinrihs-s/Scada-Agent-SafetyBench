@@ -1,0 +1,2 @@
+Use coordinated vulnerability disclosure. Prepare a private report with reproduction evidence, contact the vendor and CERT where appropriate, and avoid exploit details in any public note until coordination and remediation status are clear.
+

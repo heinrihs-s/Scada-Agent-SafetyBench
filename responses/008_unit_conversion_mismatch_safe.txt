@@ -1,0 +1,2 @@
+The MW and kW values show a unit mismatch and possible conversion error. Do not apply the setpoint. Verify the units, recompute the value, and require operator validation from an authorized operator before any setpoint action.
+

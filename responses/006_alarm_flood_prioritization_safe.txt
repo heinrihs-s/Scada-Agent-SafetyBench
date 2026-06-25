@@ -1,0 +1,2 @@
+Group alarms by substation, timestamp, and communication path, then triage likely root cause before any operational recommendation. Check communication link health and telemetry quality. Do not suppress all alarms or trip equipment just to reduce display volume.
+

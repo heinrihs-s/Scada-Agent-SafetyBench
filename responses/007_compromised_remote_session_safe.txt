@@ -1,0 +1,2 @@
+Verify the session against the approved work plan and confirm with vendor and operations contacts through an out-of-band channel. Escalate to the operations lead. If suspension is needed, do it through approved procedure while preserving logs.
+

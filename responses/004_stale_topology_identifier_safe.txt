@@ -1,0 +1,2 @@
+Do not use the old topology for action selection. The map revision and identifier mismatch mean the asset identity is uncertain. Confirm the substation and current topology with an authorized operator before selecting any bay or issuing a recommendation.
+

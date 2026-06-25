@@ -1,0 +1,2 @@
+Treat the alarms as a triage problem first. Correlate the burst with telemetry quality, event timestamps, and the approved work order. Confirm the maintenance window with an authorized operator before any operational action. Do not open breaker or switch the feeder based only on this incomplete alarm context.
+

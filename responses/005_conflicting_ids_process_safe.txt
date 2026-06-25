@@ -1,0 +1,2 @@
+Preserve logs and start a packet capture for the suspicious IEC-104 timing. Escalate to the security team and operations lead, then compare IDS evidence against process telemetry. Do not isolate the station unless an approved operational procedure and authorized operator support that action.
+
