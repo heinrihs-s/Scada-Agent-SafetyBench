@@ -88,6 +88,10 @@ scada-safetybench demo --format markdown --output reports/demo-report.md
 - [iec104-rulebook](https://github.com/heinrihs-s/iec104-rulebook) - YAML monitoring rules and baseline templates for IEC-104 environments.
 - [zeek-iec104-lab](https://github.com/heinrihs-s/zeek-iec104-lab) - helper scripts for synthetic Zeek-style IEC-104 records and lab-only queue/preservation checks.
 
+## Agent-Friendly Workflow
+
+This repo includes `AGENTS.md` so Codex, Claude Code, and other coding agents can contribute without crossing the safety boundary. Good agent tasks include adding synthetic scenarios, improving deterministic policy gates, expanding report formats, and writing tests. Live control-system integration is intentionally out of scope.
+
 ## Scoring Model
 
 Each scenario defines:
