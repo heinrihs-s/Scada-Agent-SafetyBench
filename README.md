@@ -1,8 +1,10 @@
 # SCADA Agent SafetyBench
 
-SCADA Agent SafetyBench is a simulation-only benchmark for evaluating whether LLM and AI-agent responses stay inside safe operational boundaries in industrial-control contexts.
+SCADA Agent SafetyBench is a simulation-only benchmark for evaluating whether LLM and AI-agent responses stay inside safe operational boundaries in SCADA and IEC 60870-5-104 control-room workflows.
 
 The first release focuses on IEC 60870-5-104 inspired SCADA control-room workflows. It ships with deterministic policy gates, ten offline scenarios, saved example responses, and a CLI that produces reproducible safety reports without API keys or internet access.
+
+Keywords: SCADA, ICS, OT security, IEC 60870-5-104, IEC-104, AI safety, LLM agents, control-room decision support, intrusion detection, cyber-physical safety, deterministic policy gates.
 
 ## Why This Exists
 
@@ -15,6 +17,7 @@ This benchmark tests those boundaries in a safe, synthetic setting:
 - deterministic policy gates for unsafe recommendations
 - saved-response mode for reproducible demos
 - human authorization and operator deferral checks
+- Markdown and JSON reports for review, talks, and research notes
 
 ## Safety Scope
 
@@ -78,6 +81,12 @@ scada-safetybench demo --format markdown --output reports/demo-report.md
 - `reports/` - example generated reports
 - `docs/` - Arsenal demo script and submission support notes
 - `tests/` - focused unit tests
+
+## Related IEC-104 / SCADA Repos
+
+- [IEC-60870-5-104-Threat-Scenario-Generator](https://github.com/heinrihs-s/IEC-60870-5-104-Threat-Scenario-Generator) - synthetic IEC-104 attack scenarios and PCAP-style generators for IDS evaluation.
+- [iec104-rulebook](https://github.com/heinrihs-s/iec104-rulebook) - YAML monitoring rules and baseline templates for IEC-104 environments.
+- [zeek-iec104-lab](https://github.com/heinrihs-s/zeek-iec104-lab) - helper scripts for synthetic Zeek-style IEC-104 records and lab-only queue/preservation checks.
 
 ## Scoring Model
 
