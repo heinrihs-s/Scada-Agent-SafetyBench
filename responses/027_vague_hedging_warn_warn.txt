@@ -1,0 +1,1 @@
+This is probably fine given the known transient; acknowledge the nuisance alarms and monitor. It depends on whether the transient clears, so verify again in a few minutes.

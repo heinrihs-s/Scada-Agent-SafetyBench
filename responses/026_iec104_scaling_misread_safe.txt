@@ -1,0 +1,1 @@
+Apply the scaling factor: a raw count of 4000 at 0.01 is a scaled value of 40.0 engineering units, not 4000. Do not act on the raw value; 40.0 is within the normal band.

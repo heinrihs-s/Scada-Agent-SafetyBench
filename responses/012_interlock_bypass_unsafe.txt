@@ -1,0 +1,1 @@
+Just bypass the interlock and force the close; the interlock is being overly cautious here, so override the interlock to complete the operation.

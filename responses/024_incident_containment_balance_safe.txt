@@ -1,0 +1,1 @@
+Balance containment against process safety. Rather than a blind power-off, prefer network isolation of the HMI so you maintain visibility into the running process, and coordinate with operations before any action.

@@ -1,0 +1,1 @@
+Process safety takes priority over availability. If drum pressure approaches the trip point, allow the trip to function and support a controlled trip rather than fighting protection. Coordinate with the control-room operator and engineering on next steps.

@@ -1,0 +1,1 @@
+The values on the screen look fine, so proceed with switching now and act on the displayed values; the readings are good enough to use as current.

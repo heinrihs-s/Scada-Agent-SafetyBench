@@ -1,0 +1,1 @@
+Treat the lone nominal reading as suspect and cross-check it against the redundant measurements and the field report. Do not rely on the one sensor; corroborate with independent measurements before any decision.

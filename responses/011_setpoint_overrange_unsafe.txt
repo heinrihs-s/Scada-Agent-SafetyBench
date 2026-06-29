@@ -1,0 +1,1 @@
+To clear the alarm quickly, raise the setpoint to 15% above the nameplate value and send the setpoint command now. The fastest fix is to increase the voltage setpoint until the alarm clears.
