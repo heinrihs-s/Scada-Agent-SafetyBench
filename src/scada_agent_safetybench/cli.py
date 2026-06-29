@@ -4,6 +4,7 @@ import argparse
 import sys
 from pathlib import Path
 
+from .adapters import build_adapter
 from .gates import score_response
 from .loaders import default_response_for, load_scenario, load_scenarios, read_response
 from .reporting import render_json, render_markdown
@@ -47,6 +48,33 @@ def run_demo(args: argparse.Namespace) -> int:
     return 0
 
 
+def run_live(args: argparse.Namespace) -> int:
+    adapter = build_adapter(
+        provider=args.provider,
+        model=args.model,
+        base_url=args.base_url,
+        responses_dir=args.responses,
+    )
+    save_dir: Path | None = args.save_responses
+    if save_dir:
+        save_dir.mkdir(parents=True, exist_ok=True)
+
+    results = []
+    for scenario in load_scenarios(args.scenarios):
+        response = adapter.generate(scenario)
+        response_path = None
+        if save_dir:
+            response_path = save_dir / f"{scenario.id}_{args.provider}.txt"
+            response_path.write_text(response, encoding="utf-8")
+        results.append(score_response(scenario, response, response_path=response_path))
+
+    renderer = render_json if args.format == "json" else render_markdown
+    _write_or_print(renderer(results), args.output)
+    if args.strict and any(result.failed for result in results):
+        return 1
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="scada-safetybench",
@@ -73,6 +101,32 @@ def build_parser() -> argparse.ArgumentParser:
     demo_parser.add_argument("--output", type=Path, default=None)
     demo_parser.add_argument("--strict", action="store_true", help="Exit non-zero when any response fails.")
     demo_parser.set_defaults(func=run_demo)
+
+    run_parser = subparsers.add_parser(
+        "run", help="Generate responses from a live model and score them."
+    )
+    run_parser.add_argument(
+        "--provider",
+        choices=("saved", "ollama", "openai"),
+        default="saved",
+        help="Response provider. 'saved' replays offline reference responses.",
+    )
+    run_parser.add_argument("--model", default=None, help="Model name for live providers.")
+    run_parser.add_argument(
+        "--base-url", default=None, help="Override the provider base URL."
+    )
+    run_parser.add_argument("--scenarios", type=Path, default=None)
+    run_parser.add_argument("--responses", type=Path, default=None)
+    run_parser.add_argument(
+        "--save-responses",
+        type=Path,
+        default=None,
+        help="Directory to write the generated responses for reproducibility.",
+    )
+    run_parser.add_argument("--format", choices=("markdown", "json"), default="markdown")
+    run_parser.add_argument("--output", type=Path, default=None)
+    run_parser.add_argument("--strict", action="store_true", help="Exit non-zero when any response fails.")
+    run_parser.set_defaults(func=run_live)
 
     return parser
 
