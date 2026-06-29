@@ -2,7 +2,7 @@
 
 SCADA Agent SafetyBench is a simulation-only benchmark for evaluating whether LLM and AI-agent responses stay inside safe operational boundaries in SCADA and IEC 60870-5-104 control-room workflows.
 
-The first release focuses on IEC 60870-5-104 inspired SCADA control-room workflows. It ships with deterministic policy gates, ten offline scenarios, saved example responses, and a CLI that produces reproducible safety reports without API keys or internet access.
+The first release focuses on IEC 60870-5-104 inspired SCADA control-room workflows. It ships with deterministic policy gates, **27 offline scenarios across six failure-mode families** (see [`docs/TAXONOMY.md`](docs/TAXONOMY.md)), saved example responses, and a CLI that produces reproducible safety reports without API keys or internet access. The same gates can also score responses from a live model (local Ollama or any OpenAI-compatible endpoint).
 
 Keywords: SCADA, ICS, OT security, IEC 60870-5-104, IEC-104, AI safety, LLM agents, control-room decision support, intrusion detection, cyber-physical safety, deterministic policy gates.
 
@@ -73,6 +73,44 @@ Write a Markdown report:
 scada-safetybench demo --format markdown --output reports/demo-report.md
 ```
 
+## Run Against a Live Model
+
+The deterministic gates can score real model output, not just saved responses. No
+extra dependencies are required; the adapters use only the Python standard library.
+
+Local model via Ollama (keeps prompts on your own hardware):
+
+```bash
+scada-safetybench run \
+  --provider ollama \
+  --model llama3.1 \
+  --base-url http://localhost:11434 \
+  --save-responses runs/llama31
+```
+
+Any OpenAI-compatible endpoint (reads `OPENAI_API_KEY`):
+
+```bash
+export OPENAI_API_KEY=sk-...
+scada-safetybench run --provider openai --model gpt-4o-mini --format markdown
+```
+
+`--save-responses DIR` writes each generated response to disk so a run is fully
+reproducible and can be replayed offline with `demo`/`score`.
+
+## Recorded Demo
+
+A terminal recording of the offline demo lives at [`docs/demo.cast`](docs/demo.cast)
+([asciicast v2](https://docs.asciinema.org/manual/asciicast/v2/)). Play it locally,
+upload it, or render it to GIF/SVG:
+
+```bash
+asciinema play docs/demo.cast          # play in a terminal
+asciinema upload docs/demo.cast        # share on asciinema.org
+agg docs/demo.cast docs/demo.gif       # render to GIF (agg)
+svg-term --in docs/demo.cast --out docs/demo.svg
+```
+
 ## Repository Layout
 
 - `scenarios/` - synthetic SCADA/IEC-104 safety scenarios
@@ -121,11 +159,19 @@ The gates are intentionally transparent. They are not a replacement for expert r
 
 ## Roadmap
 
-- Add richer scenario metadata and versioning.
-- Add optional local model adapters, starting with Ollama.
-- Add optional OpenAI adapter for research runs.
-- Add JSON schema validation for scenarios.
-- Add a small static report viewer.
+- [x] 27 scenarios across a documented six-family failure-mode taxonomy.
+- [x] Local model adapter (Ollama) and OpenAI-compatible adapter for research runs.
+- [x] Schema and golden-verdict tests across the full corpus.
+- [ ] Published multi-model results table (leaderboard) from `run --save-responses`.
+- [ ] Richer scenario metadata, versioning, and per-family scoring.
+- [ ] A small static report viewer.
+
+## Results (leaderboard)
+
+The benchmark is designed to produce a comparable, reproducible multi-model results
+table. Generate per-model runs with `run --save-responses` and aggregate them into a
+table here. (No model scores are published yet; this section is a placeholder until
+runs are recorded.)
 
 ## Licenses
 

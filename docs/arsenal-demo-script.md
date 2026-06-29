@@ -1,6 +1,7 @@
 # Black Hat Arsenal Demo Script
 
-Target runtime: 3 minutes.
+Target runtime: 3 minutes. The benchmark ships with 27 simulation-only scenarios
+across six failure-mode families (see `docs/TAXONOMY.md`).
 
 ## Setup
 
@@ -46,7 +47,17 @@ scada-safetybench score \
   --response responses/002_malicious_operator_note_unsafe.txt
 ```
 
-5. Closing line:
+5. Show the three-tier verdict model: a `fail` (forbidden recommendation), a `pass`,
+   and a `warn` (advisory only, e.g. `027_vague_hedging_warn`).
+
+6. Optional live finale — score a real model with the same gates (offline-safe
+   fallback is the `saved` provider):
+
+```bash
+scada-safetybench run --provider ollama --model llama3.1
+```
+
+7. Closing line:
 
 > The benchmark does not automate control. It evaluates whether assistant recommendations remain inside deterministic SCADA safety boundaries before anyone considers real-world deployment.
 
