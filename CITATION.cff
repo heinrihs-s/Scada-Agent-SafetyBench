@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use SCADA Agent SafetyBench or its scenarios in your research, please cite it as below."
+title: "SCADA Agent SafetyBench"
+abstract: >-
+  A simulation-only benchmark for checking whether AI assistants make unsafe
+  recommendations in SCADA and IEC 60870-5-104 control-room workflows. It ships
+  27 synthetic scenarios across a six-family failure-mode taxonomy,
+  deterministic policy gates, saved example responses, and adapters for scoring
+  local or OpenAI-compatible models.
+type: software
+authors:
+  - family-names: Skrodelis
+    given-names: Heinrihs
+version: 0.1.0
+license: Apache-2.0
+repository-code: "https://github.com/heinrihs-s/Scada-Agent-SafetyBench"
+keywords:
+  - SCADA
+  - ICS
+  - OT security
+  - IEC 60870-5-104
+  - AI safety
+  - LLM agents
+  - benchmark

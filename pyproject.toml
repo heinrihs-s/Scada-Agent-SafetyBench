@@ -22,10 +22,17 @@ classifiers = [
   "Programming Language :: Python :: 3.10",
   "Programming Language :: Python :: 3.11",
   "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
   "Topic :: Security",
   "Topic :: Scientific/Engineering"
 ]
 dependencies = []
+
+[project.urls]
+Homepage = "https://github.com/heinrihs-s/Scada-Agent-SafetyBench"
+Taxonomy = "https://github.com/heinrihs-s/Scada-Agent-SafetyBench/blob/main/docs/TAXONOMY.md"
+Issues = "https://github.com/heinrihs-s/Scada-Agent-SafetyBench/issues"
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
